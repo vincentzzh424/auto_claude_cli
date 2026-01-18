@@ -27,6 +27,12 @@
 ## ⚡ 快速开始 (Quick Start)
 
 10秒内启动。无需复杂的环境配置。
+```bash
+# Windows
+curl https://raw.githubusercontent.com/vincentzzh424/auto_claude_cli/main/run.py -o run.py; python run.py "写一个测试类打印hello world"
+# Mac&Linux
+curl -sL https://raw.githubusercontent.com/vincentzzh424/auto_claude_cli/main/run.py | python - "写一个测试类打印hello world"
+```
 
 ### 1. 前置要求：Claude CLI
 安装底层驱动（需要 Node.js 环境）。

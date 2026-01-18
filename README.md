@@ -25,7 +25,15 @@ Don't overpay for coding. I highly recommend using the GLM-Coding model with Cla
 
 ## ⚡ Quick Start
 
-Get up and running in 10 seconds. No complex environment setup required.
+Get up and running Now. No complex environment setup required.
+```bash
+# Windows
+curl https://raw.githubusercontent.com/vincentzzh424/auto_claude_cli/main/run.py -o run.py; python run.py "write a test print hello world"
+# Mac&Linux
+curl -sL https://raw.githubusercontent.com/vincentzzh424/auto_claude_cli/main/run.py | python - "write a test print hello world"
+```
+
+
 
 ### 1. Prerequisite: Claude CLI
 Install the underlying driver (Node.js required).
