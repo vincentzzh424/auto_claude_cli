@@ -1,0 +1,364 @@
+{
+  "project_name": "cross-platform-ecommerce-middleware",
+  "version": "1.0.0",
+  "description": "跨平台电商中台系统 - Up主全域经营管理平台",
+  "tech_stack": {
+    "language": "Python",
+    "framework": "FastAPI",
+    "architecture": "Microservices",
+    "databases": ["MySQL", "PostgreSQL", "Redis"],
+    "message_queue": ["RabbitMQ", "Kafka"],
+    "search": "Elasticsearch",
+    "storage": "Aliyun OSS / MinIO"
+  },
+  "modules": {
+    "core": {
+      "description": "核心业务逻辑层",
+      "submodules": {
+        "product_center": {
+          "path": "app/services/product",
+          "description": "商品中心 (PIM)",
+          "services": [
+            "ProductService - 商品管理",
+            "SKUService - SKU管理",
+            "InventoryService - 库存管理与锁定",
+            "PricingService - 多渠道定价",
+            "MaterialService - 素材库管理"
+          ],
+          "models": [
+            "Product, SKU, SKUChannelPrice, ProductMaterial"
+          ]
+        },
+        "order_center": {
+          "path": "app/services/order",
+          "description": "订单中心 (OMS)",
+          "services": [
+            "OrderService - 订单创建与管理",
+            "OrderSyncService - 第三方平台订单同步",
+            "OrderMergeService - 拆单/合单",
+            "OrderStateMachine - 订单状态流转"
+          ],
+          "models": [
+            "Order, OrderItem, OrderStatusLog"
+          ]
+        },
+        "customer_center": {
+          "path": "app/services/customer",
+          "description": "用户中心 (CRM)",
+          "services": [
+            "CustomerService - 用户管理",
+            "MemberService - 会员体系",
+            "PointsService - 积分管理",
+            "IdentityFusionService - 跨平台身份融合"
+          ],
+          "models": [
+            "Customer, MemberLevel, PointTransaction, CustomerIdentity"
+          ]
+        },
+        "logistics_center": {
+          "path": "app/services/logistics",
+          "description": "物流发货 (WMS)",
+          "services": [
+            "ShipmentService - 发货管理",
+            "WaybillService - 电子面单打印",
+            "LogisticsRouterService - 智能物流路由",
+            "TrackingService - 物流跟踪"
+          ],
+          "models": [
+            "Shipment, WaybillTemplate, LogisticsRule"
+          ]
+        },
+        "payment_center": {
+          "path": "app/services/payment",
+          "description": "支付结算",
+          "services": [
+            "PaymentService - 支付处理",
+            "RefundService - 退款处理",
+            "SettlementService - 分账结算",
+            "ReconciliationService - 多渠道对账"
+          ],
+          "models": [
+            "Payment, Refund, SettlementOrder, ReconciliationReport"
+          ]
+        },
+        "marketing_center": {
+          "path": "app/services/marketing",
+          "description": "营销中心",
+          "services": [
+            "CouponService - 优惠券",
+            "PromotionService - 促销活动",
+            "SecKillService - 秒杀系统"
+          ],
+          "models": [
+            "Coupon, Promotion, SecKillActivity"
+          ]
+        },
+        "cs_center": {
+          "path": "app/services/cs",
+          "description": "客服工作台",
+          "services": [
+            "MessageAggregationService - 全渠道消息聚合",
+            "AIService - AI智能辅助",
+            "TicketService - 工单系统"
+          ],
+          "models": [
+            "Conversation, Message, Ticket"
+          ]
+        }
+      }
+    },
+    "channel_adapters": {
+      "description": "第三方平台适配器层",
+      "submodules": {
+        "taobao_adapter": {
+          "path": "app/adapters/taobao",
+          "description": "淘宝开放平台适配器",
+          "apis": [
+            "TaobaoOrderAPI - 订单同步",
+            "TaobaoProductAPI - 商品同步",
+            "TaobaoLogisticsAPI - 物流回填"
+          ]
+        },
+        "douyin_adapter": {
+          "path": "app/adapters/douyin",
+          "description": "抖音开放平台适配器",
+          "apis": [
+            "DouyinOrderAPI, DouyinProductAPI, DouyinLogisticsAPI"
+          ]
+        },
+        "xiaohongshu_adapter": {
+          "path": "app/adapters/xiaohongshu",
+          "description": "小红书开放平台适配器",
+          "apis": [
+            "XiaohongshuOrderAPI, XiaohongshuProductAPI"
+          ]
+        },
+        "pinduoduo_adapter": {
+          "path": "app/adapters/pinduoduo",
+          "description": "拼多多开放平台适配器",
+          "apis": [
+            "PinduoduoOrderAPI, PinduoduoProductAPI"
+          ]
+        },
+        "logistics_adapter": {
+          "path": "app/adapters/logistics",
+          "description": "物流服务适配器",
+          "providers": [
+            "KuaidiBirdAdapter - 快递鸟",
+            "CainiaoAdapter - 菜鸟网络"
+          ]
+        }
+      }
+    },
+    "infrastructure": {
+      "description": "基础设施层",
+      "submodules": {
+        "database": {
+          "path": "app/infrastructure/database",
+          "description": "数据库访问层",
+          "components": [
+            "BaseModel - SQLAlchemy基类",
+            "SessionManager - 数据库会话管理",
+            "Repository - 通用仓储模式"
+          ]
+        },
+        "cache": {
+          "path": "app/infrastructure/cache",
+          "description": "缓存服务",
+          "components": [
+            "RedisClient - Redis客户端",
+            "DistributedLock - 分布式锁",
+            "CacheManager - 缓存管理器"
+          ]
+        },
+        "queue": {
+          "path": "app/infrastructure/queue",
+          "description": "消息队列",
+          "components": [
+            "RabbitMQClient - RabbitMQ客户端",
+            "KafkaProducer - Kafka生产者",
+            "KafkaConsumer - Kafka消费者"
+          ]
+        },
+        "storage": {
+          "path": "app/infrastructure/storage",
+          "description": "对象存储",
+          "components": [
+            "OSSClient - 阿里云OSS客户端",
+            "MinIOClient - MinIO客户端"
+          ]
+        },
+        "search": {
+          "path": "app/infrastructure/search",
+          "description": "搜索引擎",
+          "components": [
+            "ElasticsearchClient - ES客户端",
+            "IndexManager - 索引管理"
+          ]
+        },
+        "scheduler": {
+          "path": "app/infrastructure/scheduler",
+          "description": "定时任务",
+          "components": [
+            "CeleryApp - Celery应用",
+            "APScheduler - APScheduler调度器"
+          ]
+        },
+        "logger": {
+          "path": "app/infrastructure/logger",
+          "description": "日志服务",
+          "components": [
+            "Logger - 统一日志",
+            "AuditLogger - 审计日志"
+          ]
+        }
+      }
+    },
+    "api": {
+      "description": "API接口层",
+      "submodules": {
+        "web_api": {
+          "path": "app/api/web",
+          "description": "Web管理后台 API (FastAPI)",
+          "routes": [
+            "product_router - 商品管理接口",
+            "order_router - 订单管理接口",
+            "customer_router - 客户管理接口",
+            "logistics_router - 物流管理接口",
+            "statistics_router - 统计分析接口"
+          ]
+        },
+        "app_api": {
+          "path": "app/api/app",
+          "description": "移动端/H5 API",
+          "routes": [
+            "mall_router - 商城接口",
+            "user_router - 用户接口",
+            "payment_router - 支付接口"
+          ]
+        },
+        "openapi": {
+          "path": "app/api/openapi",
+          "description": "开放平台API (供第三方调用)",
+          "routes": [
+            "webhook_router - Webhook回调",
+            "integration_router - 集成接口"
+          ]
+        }
+      }
+    },
+    "frontend": {
+      "description": "前端应用",
+      "submodules": {
+        "admin_dashboard": {
+          "path": "frontend/admin",
+          "description": "管理后台 (Vue 3 + TypeScript + Element Plus)",
+          "components": [
+            "商品管理模块",
+            "订单管理模块",
+            "客户管理模块",
+            "物流管理模块",
+            "数据看板"
+          ]
+        },
+        "h5_mall": {
+          "path": "frontend/h5",
+          "description": "H5个人站 (Nuxt.js + TailwindCSS)",
+          "components": [
+            "CMS拖拽式装修",
+            "商品展示",
+            "购物车与结算",
+            "个人中心"
+          ]
+        },
+        "mini_program": {
+          "path": "frontend/miniprogram",
+          "description": "小程序 (uni-app)",
+          "platforms": [
+            "微信小程序",
+            "支付宝小程序"
+          ]
+        }
+      }
+    }
+  },
+  "entry_point": "main.py",
+  "cli_design": {
+    "run_server": {
+      "command": "python main.py run server",
+      "description": "启动FastAPI Web服务器",
+      "handler": "app.api.web:create_app"
+    },
+    "run_worker": {
+      "command": "python main.py run worker",
+      "description": "启动Celery后台任务Worker",
+      "handler": "app.infrastructure.scheduler.celery_worker"
+    },
+    "test_api": {
+      "command": "python main.py test api --module=order --action=create_order --params='{...}'",
+      "description": "直接调用底层Service函数(不走网络)，接受JSON参数",
+      "handler": "app.cli:test_api",
+      "example": "python main.py test api --module=order --action=create_order --params='{\"sku_items\": [{\"sku_id\": 123, \"quantity\": 2}], \"customer_id\": 456}'"
+    },
+    "inspect_db": {
+      "command": "python main.py inspect db [--table=orders]",
+      "description": "打印数据库统计信息、表结构、记录数等",
+      "handler": "app.cli:inspect_db"
+    },
+    "sync_orders": {
+      "command": "python main.py sync orders --platform=taobao [--since=2026-01-18]",
+      "description": "手动触发第三方平台订单同步",
+      "handler": "app.cli:sync_orders"
+    },
+    "init_db": {
+      "command": "python main.py init db [--seed]",
+      "description": "初始化数据库表结构和可选的种子数据",
+      "handler": "app.cli:init_db"
+    },
+    "create_merchant": {
+      "command": "python main.py create merchant --name='测试商户' --platform=taobao",
+      "description": "创建商户并配置平台接入",
+      "handler": "app.cli:create_merchant"
+    },
+    "cache_clear": {
+      "command": "python main.py cache clear [--pattern='*']",
+      "description": "清理Redis缓存",
+      "handler": "app.cli:cache_clear"
+    },
+    "queue_stats": {
+      "command": "python main.py queue stats",
+      "description": "查看消息队列统计信息",
+      "handler": "app.cli:queue_stats"
+    }
+  },
+  "config_structure": {
+    "config_file": "config/settings.py",
+    "environments": {
+      "development": "config/development.py",
+      "production": "config/production.py",
+      "testing": "config/testing.py"
+    },
+    "env_vars": [
+      "DATABASE_URL",
+      "REDIS_URL",
+      "RABBITMQ_URL",
+      "KAFKA_BOOTSTRAP_SERVERS",
+      "ELASTICSEARCH_URL",
+      "OSS_ACCESS_KEY",
+      "OSS_SECRET_KEY",
+      "TAOBAO_APP_KEY",
+      "TAOBAO_APP_SECRET"
+    ]
+  },
+  "testing_strategy": {
+    "unit_tests": "tests/unit - 单元测试，隔离测试Service层",
+    "integration_tests": "tests/integration - 集成测试，测试API端点",
+    "cli_tests": "tests/cli - CLI命令测试",
+    "fixtures": "tests/fixtures - 测试数据"
+  },
+  "deployment": {
+    "docker": "Dockerfile + docker-compose.yml",
+    "k8s": "k8s/ - Kubernetes部署配置",
+    "env": ".env.example - 环境变量模板"
+  }
+}
