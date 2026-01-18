@@ -1,62 +1,87 @@
-Auto_Claude 🤖👐
-* 解放双手。 体验真正的“零干预”全自动软件开发。
+# Auto_Claude 🤖👐
 
-* Liberate your hands. Experience true hands-free software development.
+### The Zero-Intervention Software Factory
+**从想法到交付，只需一个脚本。体验真正的“解放双手”。**
 
-Auto_Claude is a headless software factory.**Only One script**.It transforms a raw idea into a fully functional, refactored, and tested codebase. It orchestrates a team of AI agents (PM, Architect, Developer, QA) to build complex systems while you sleep—with zero human intervention.
+> **Liberate your hands.** Experience true hands-free software development.
+> Auto_Claude is a **headless** software factory powered by a single script. It orchestrates a virtual team of AI agents (PM, Architect, Developer, QA) to transform raw ideas into fully functional, refactored, and tested codebases while you sleep.
 
-### 💸 SupportMe & Save Your Money
-Run full autonomous cycles for **< $0.1/day**.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Claude CLI](https://img.shields.io/badge/Driver-Claude%20CLI-purple)](https://anthropic.com)
 
-> [**👉 Try GLM-Coding (Best Value Model)**](https://www.bigmodel.cn/glm-coding?ic=ODKVSPWHNC)
-> *Signing up via this link directly supports my open-source work!*
+---
 
-⚡ Quick Start
-Get up and running in 10 seconds.
+## 💸 Cost-Efficiency & SupportMe
+**Run full autonomous cycles for < $0.10 / day.**
 
+Don't overpay for coding. I highly recommend using the GLM-Coding model with Claude CLI for the best cost-to-performance ratio.
 
-# 1. Prepare Claude CLI
-npm install -g @anthropic-ai/claude-code
+> [**👉 Try GLM-Coding (High Performance, Low Cost)**](https://www.bigmodel.cn/glm-coding?ic=ODKVSPWHNC)
+>
+> *Signing up via this link reduces your API costs and directly supports my open-source work!*
 
-[**👉 get Cheap Claude CLI 0.1$/day**](https://www.bigmodel.cn/glm-coding?ic=ODKVSPWHNC) or 
-[**Claude Offical WebSite 20$/month**](https://claude.com/product/claude-code)
+---
 
-# 2. Clone and install python
-One Script & Dependences Free
+## ⚡ Quick Start
+
+Get up and running in 10 seconds. No complex environment setup required.
+
+### 1. Prerequisite: Claude CLI
+Install the underlying driver (Node.js required).
+
 ```bash
-git clone https://github.com/your-username/auto_claude.git
+npm install -g @anthropic-ai/claude-code
+```
+
+Option A (Recommended): [**Get GLM-Coding Key (~$0.1/day)**](https://www.bigmodel.cn/glm-coding?ic=ODKVSPWHNC)
+
+Option B: Use Official Anthropic Key ($20/month)
+
+### 2. Run Auto_Claude
+Dependency-free , minimal python requirements.
+
+```Bash
+git clone https://github.com/vincentzzh424/auto_claude.git
 cd auto_claude
-mkdir demo
-python ../run.py "Create a Personal WebSite"
+# (Optional) Create a workspace to keep things clean
+mkdir demo && cd demo 
 ```
 
-# 3. Make your idea come True
-python run.py "Create a CLI tool to resize images in a folder"
+### 3. Make Your Idea Come True
+```Bash
+# Run the script from the parent directory (or add to path) with your idea.
+python ../run.py "Create a Personal Website with a dark mode toggle"
+💡 Usage Examples
+```
 
-
-
-Usage Examples
+### 💡4. Simple Utility
 
 ```Bash
-python run.py "Create a script to scrape product prices from a list of URLs"
+python ../run.py "Create a CLI tool to resize and watermark images in a folder"
 ```
 
-💡Complex System Tip: For best results, use ChatGPT/Gemini to refine your prompt string before pasting it here.
+💡Complex System Tip: Use ChatGPT/Gemini to refine your prompt into a detailed specification before pasting it here.
 
 ```Bash
-python run.py "Build a Bloomberg-like terminal for crypto trading. Features: WebSocket data feed for BTC/ETH, real-time K-line visualization using mplfinance, and MACD/RSI indicator calculation. No mock data...."
+python ../run.py "Build a Bloomberg-like terminal for crypto trading. Features: WebSocket data feed for BTC/ETH, real-time K-line visualization using mplfinance, and MACD/RSI indicator calculation. No mock data."
 ```
-⚠️ Safety Warning
+
+[Shopping System Example](example/shopping_system.md)
+
+---
+
+### ⚠️ Safety Warning
 Please Read Before Use
 
-To achieve true autonomy, this tool executes the Claude CLI with --dangerously-skip-permissions.
+To achieve true "hands-free" autonomy, this tool executes the Claude CLI with the --dangerously-skip-permissions flag enabled.
 
-The agent has full filesystem access.
+Risk: The agent has full filesystem access (read/write/delete).
 
-Recommendation: Always run this inside a Sandbox, Docker container, or a dedicated empty directory.
+Recommendation: Always run this tool inside a Sandbox, Docker container, or a dedicated empty directory to prevent accidental data loss.
 
-🤝 Contributing
+### 🤝 Contributing
 We believe in the power of autonomous agents. Pull Requests to improve the driver logic or prompt engineering are welcome.
 
 📄 License
-MIT 
+MIT © [vincentzzh424]
