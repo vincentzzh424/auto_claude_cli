@@ -53,14 +53,13 @@ Dependency-free , minimal python requirements.
 git clone https://github.com/vincentzzh424/auto_claude_cli.git
 cd auto_claude_cli
 # (Optional) Create a workspace to keep things clean
-mkdir demo && cd demo 
+mkdir demo && cd demo
 ```
 
 ### 3. Make Your Idea Come True
 ```Bash
 # Run the script from the parent directory (or add to path) with your idea.
 python ../run.py "Create a Personal Website with a dark mode toggle"
-💡 Usage Examples
 ```
 
 ### 💡4. Simple Utility
@@ -76,6 +75,27 @@ python ../run.py "Build a Bloomberg-like terminal for crypto trading. Features: 
 ```
 
 [Shopping System Example](example/shopping_system.md)
+
+### 🔄 Resume & Progress (New)
+
+Projects can run for days. Auto_Claude_CLI now supports **checkpoint resume** — pick up exactly where you left off.
+
+```Bash
+# Default mode: resume from last checkpoint (reads PROGRESS.md)
+python ../run.py
+
+# Force start from scratch (ignore existing progress)
+python ../run.py "your idea" --force
+
+# Custom rate-limit retry interval (default: 600s = 10 min)
+python ../run.py "your idea" --retry-wait 300
+```
+
+**How it works:**
+- A `PROGRESS.md` file is auto-generated in your workspace, tracking every pipeline stage and module sub-step
+- On re-run, all completed stages are skipped — resumes from the first pending step
+- API health check before each Claude call: detects rate limits (429) and auto-waits with countdown
+- You can manually edit `PROGRESS.md` to skip or retry any stage (change `[x]` to `[ ]`)
 
 ---
 

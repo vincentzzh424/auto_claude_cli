@@ -77,6 +77,27 @@ python ../run.py "构建一个类似彭博终端的加密货币交易系统。�
 ```
 [复杂商城案例](example/shopping_system.md)
 
+### 🔄 断点续写 (Resume & Progress)
+
+项目经常要跑好几天。Auto_Claude_CLI 现在支持 **断点续写** — 从上次中断的地方继续。
+
+```Bash
+# 默认模式：从上次进度继续（读取 PROGRESS.md）
+python ../run.py
+
+# 强制从头开始（忽略已有进度）
+python ../run.py "你的想法" --force
+
+# 自定义限流重试间隔（默认 600秒 = 10分钟）
+python ../run.py "你的想法" --retry-wait 300
+```
+
+**工作原理：**
+- 工作目录自动生成 `PROGRESS.md` 文件，追踪每个流水线阶段和模块子步骤
+- 重新运行时，所有已完成阶段自动跳过 — 从第一个未完成步骤继续
+- 每次 Claude 调用前自动检查 API 健康：检测到限流 (429) 时自动等待并倒计时
+- 可手动编辑 `PROGRESS.md` 跳过或重试任何阶段（将 `[x]` 改为 `[ ]`）
+
 
 ### ⚠️ 安全警告 (Safety Warning)
 使用前请务必阅读
