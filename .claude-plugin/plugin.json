@@ -1,0 +1,13 @@
+{
+  "name": "auto-claude-cli",
+  "description": "Autonomous software factory — drives Claude agents through Research, PM, Architecture, Development, QA pipeline to build complete projects from an idea",
+  "version": "0.1.0",
+  "author": {
+    "name": "vincentzzh424",
+    "url": "https://github.com/vincentzzh424"
+  },
+  "repository": "https://github.com/vincentzzh424/auto_claude_cli",
+  "license": "MIT",
+  "skills": ["./skills/auto-factory"],
+  "commands": ["./commands"]
+}
