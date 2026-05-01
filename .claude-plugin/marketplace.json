@@ -1,0 +1,15 @@
+{
+  "name": "auto-claude-cli",
+  "owner": {
+    "name": "vincentzzh424",
+    "url": "https://github.com/vincentzzh424"
+  },
+  "plugins": [
+    {
+      "name": "auto-claude-cli",
+      "source": "./",
+      "description": "Autonomous software factory — drives agents through Research, PM, Architecture, Development, QA pipeline to build complete projects from an idea",
+      "version": "0.1.0"
+    }
+  ]
+}
